@@ -9,7 +9,6 @@ Capybara.default_driver = :webkit
 World do
   @virtualenv_path = File.expand_path(File.dirname(__FILE__) + "/../../../")
   `python #{@virtualenv_path}/project/manage.py testserver --addrport 12345 #{@virtualenv_path}/project/fixtures/test_admin_user.json > #{@virtualenv_path}/tmp/testrun.log 2>&1 &`
-  extend Capybara
 end
 
 Before do
