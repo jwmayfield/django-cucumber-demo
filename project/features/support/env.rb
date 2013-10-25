@@ -8,14 +8,13 @@ Capybara.default_driver = :webkit
 
 World do
   @virtualenv_path = File.expand_path(File.dirname(__FILE__) + "/../../../")
-  `#{@virtualenv_path}/bin/python #{@virtualenv_path}/project/manage.py testserver --addrport 12345 #{@virtualenv_path}/project/fixtures/test_admin_user.json > #{@virtualenv_path}/tmp/testrun.log 2>&1 &`
-  extend Capybara
+  `python #{@virtualenv_path}/project/manage.py testserver --addrport 12345 #{@virtualenv_path}/project/fixtures/test_admin_user.json > #{@virtualenv_path}/tmp/testrun.log 2>&1 &`
 end
 
 Before do
   begin
     visit('/')
-  rescue Capybara::Driver::Webkit::WebkitInvalidResponseError
+  rescue Capybara::Webkit::InvalidResponseError
     retry
   end
 end
